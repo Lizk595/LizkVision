@@ -1,0 +1,19 @@
+{
+	"BUILD_DIR" : "C:/Users/8/Desktop/LizkVision/build-LizkVision-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/LizkVision_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/8/Desktop/LizkVision/build-LizkVision-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/8/Desktop/LizkVision/build-LizkVision-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/8/Desktop/LizkVision/LizkVision",
+	"CMAKE_SOURCE_DIR" : "C:/Users/8/Desktop/LizkVision/LizkVision",
+	"INCLUDE_DIR" : "C:/Users/8/Desktop/LizkVision/build-LizkVision-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/LizkVision_autogen/include",
+	"INPUTS" : [],
+	"LOCK_FILE" : "C:/Users/8/Desktop/LizkVision/build-LizkVision-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/CMakeFiles/LizkVision_autogen.dir/AutoRcc_diagramscene_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "diagramscene" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_diagramscene.cpp",
+	"RCC_EXECUTABLE" : "E:/Qt/6.2.4/msvc2019_64/./bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "C:/Users/8/Desktop/LizkVision/build-LizkVision-Desktop_Qt_6_2_4_MSVC2019_64bit-Debug/CMakeFiles/LizkVision_autogen.dir/AutoRcc_diagramscene_EWIEGA46WW_Used.txt",
+	"SOURCE" : "C:/Users/8/Desktop/LizkVision/LizkVision/diagramscene.qrc",
+	"VERBOSITY" : 0
+}
