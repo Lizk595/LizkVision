@@ -1,8 +1,7 @@
 #ifndef OPERATORWIDGET_H
 #define OPERATORWIDGET_H
 
-//#include "imagemanager.h"
-// #include "imagemanager.h"
+
 #include <QWidget>
 #include <QRegularExpression>
 #include <QComboBox>

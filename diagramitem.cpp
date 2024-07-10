@@ -1,6 +1,4 @@
 #include "diagramitem.h"
-
-
 #include <QGraphicsScene>
 #include <QGraphicsSceneContextMenuEvent>
 #include <QMenu>
@@ -8,11 +6,6 @@
 #include <QFont>
 
 
-
-
-
-
-//! [0]
 DiagramItem::DiagramItem(DiagramType diagramType, QMenu *contextMenu,
                          QGraphicsItem *parent)
     : QGraphicsPolygonItem(parent), myDiagramType(diagramType)
@@ -65,16 +58,14 @@ DiagramItem::DiagramItem(DiagramType diagramType, QMenu *contextMenu,
 
 
 }
-//! [0]
 
-//! [1]
+
 void DiagramItem::removeArrow(Arrow *arrow)     //删除一个连接
 {
     arrows.removeAll(arrow);
 }
-//! [1]
 
-//! [2]
+
 void DiagramItem::removeArrows()                //删除多个连接
 {
     // need a copy here since removeArrow() will
@@ -87,16 +78,14 @@ void DiagramItem::removeArrows()                //删除多个连接
         delete arrow;
     }
 }
-//! [2]
 
-//! [3]
+
 void DiagramItem::addArrow(Arrow *arrow)        //增加连接
 {
     arrows.append(arrow);
 }
-//! [3]
 
-//! [4]
+
 QPixmap DiagramItem::image() const
 {
     QPixmap pixmap(250, 250);
@@ -108,20 +97,8 @@ QPixmap DiagramItem::image() const
 
     return pixmap;
 }
-//! [4]
 
-//! [5]
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// void DiagramItem::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
-// {
-//     scene()->clearSelection();
-//     setSelected(true);
-//     myContextMenu->exec(event->screenPos());
-// }
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//! [5]
 
-//! [6]
 QVariant DiagramItem::itemChange(GraphicsItemChange change, const QVariant &value)
 {
     if (change == QGraphicsItem::ItemPositionChange) {
@@ -155,4 +132,4 @@ void DiagramItem::updateText(QVariantList Paras)
 
 }
 
-//! [6]
+

@@ -1,4 +1,3 @@
-
 #include "m_diagram.h"
 
 
@@ -9,17 +8,13 @@ m_Diagram::m_Diagram()
 {
     createActions();
     createToolBox();
-    //createMenus();
 
     scene = new DiagramScene(itemMenu, this);
 
     scene->setSceneRect(QRectF(0, 0, 5000, 5000));
     connect(scene, &DiagramScene::itemInserted,     //插入item
             this, &m_Diagram::itemInserted);
-    // connect(scene, &DiagramScene::textInserted,     //选中文本item
-    //         this, &m_Diagram::textInserted);
-    // connect(scene, &DiagramScene::itemSelected,     //选中item
-    //         this, &m_Diagram::itemSelected);
+
     createToolbars();
 
     layout = new QHBoxLayout;
@@ -33,16 +28,8 @@ m_Diagram::m_Diagram()
     view->translate(oldMatrix.dx(), oldMatrix.dy());
     view->scale(newScale, newScale);
 
-    //layout->addWidget(view);
 
 
-
-
-    //////////////////////////////////////////////////////////////////////////
-    //test
-    // QPushButton* pb=new QPushButton;
-    // pb->setText("11111");
-    // layout->addWidget(pb);
 
     //设置图像显示GroupBox
     cbB_dispImg =new QComboBox;
@@ -74,17 +61,6 @@ m_Diagram::m_Diagram()
     label_dispImg->setText(" ");
     label_dispImg->setAlignment(Qt::AlignCenter);
 
-
-    // gb_mid = new QGroupBox;
-    // vLayout_mid = new QVBoxLayout(gb_mid);
-    // label_dispImg = new QLabel(gb_mid);
-    // vLayout_mid->addWidget(label_dispImg);
-    // vLayout_mid->setStretch(0,0);
-    // label_dispImg->setText(" ");
-    // label_dispImg->setAlignment(Qt::AlignCenter);   //文本居中
-
-    // vLayout_mid->addWidget(label_dispImg);
-    // gb_mid->setLayout(vLayout_mid);
 
     //设置图像预览GroupBox下方的tabWidget
     tW_result = new QTabWidget;
@@ -204,62 +180,13 @@ void m_Diagram::pointerGroupClicked()
 }
 
 
-// void m_Diagram::bringToFront()
-// {
-//     if (scene->selectedItems().isEmpty())
-//         return;
-
-//     QGraphicsItem *selectedItem = scene->selectedItems().first();
-//     const QList<QGraphicsItem *> overlapItems = selectedItem->collidingItems();
-
-//     qreal zValue = 0;
-//     for (const QGraphicsItem *item : overlapItems) {
-//         if (item->zValue() >= zValue && item->type() == DiagramItem::Type)
-//             zValue = item->zValue() + 0.1;
-//     }
-//     selectedItem->setZValue(zValue);
-// }
-
-
-//
-// void m_Diagram::sendToBack()
-// {
-//     if (scene->selectedItems().isEmpty())
-//         return;
-
-//     QGraphicsItem *selectedItem = scene->selectedItems().first();
-//     const QList<QGraphicsItem *> overlapItems = selectedItem->collidingItems();
-
-//     qreal zValue = 0;
-//     for (const QGraphicsItem *item : overlapItems) {
-//         if (item->zValue() <= zValue && item->type() == DiagramItem::Type)
-//             zValue = item->zValue() - 0.1;
-//     }
-//     selectedItem->setZValue(zValue);
-// }
-
 void m_Diagram::itemInserted(DiagramItem *item)
 {
-    //pointerTypeGroup->button(int(DiagramScene::MoveItem))->setChecked(true);
     scene->setMode(DiagramScene::Mode(pointerTypeGroup->checkedId()));
     buttonGroup->button(int(item->diagramType()))->setChecked(false);
 }
 
-// void m_Diagram::textInserted(QGraphicsTextItem *)
-// {
-//     buttonGroup->button(InsertTextButton)->setChecked(false);
-//     scene->setMode(DiagramScene::Mode(pointerTypeGroup->checkedId()));
-// }
 
-// void m_Diagram::currentFontChanged(const QFont &)
-// {
-//     handleFontChange();
-// }
-
-// void m_Diagram::fontSizeChanged(const QString &)
-// {
-//     handleFontChange();
-// }
 
 void m_Diagram::sceneScaleChanged(const QString &scale)
 {
@@ -270,15 +197,6 @@ void m_Diagram::sceneScaleChanged(const QString &scale)
     view->scale(newScale, newScale);
 }
 
-
-// void m_Diagram::textColorChanged()
-// {
-//     textAction = qobject_cast<QAction *>(sender());
-//     fontColorToolButton->setIcon(createColorToolButtonIcon(
-//         ":/icon/images/linepointer.png",
-//         qvariant_cast<QColor>(textAction->data())));
-//     textButtonTriggered();
-// }
 
 void m_Diagram::itemColorChanged()
 {
@@ -299,10 +217,6 @@ void m_Diagram::lineColorChanged()
     lineButtonTriggered();
 }
 
-// void m_Diagram::textButtonTriggered()
-// {
-//     scene->setTextColor(qvariant_cast<QColor>(textAction->data()));
-// }
 
 void m_Diagram::fillButtonTriggered()
 {
@@ -372,10 +286,6 @@ void m_Diagram::updateDisp()
 }
 
 
-
-
-
-
 QPixmap cvMat2QPixmap(cv::Mat& mat)
 {
     //CV_8UC1
@@ -424,91 +334,17 @@ QPixmap cvMat2QPixmap(cv::Mat& mat)
 }
 
 
-// void m_Diagram::handleFontChange()
-// {
-//     QFont font = fontCombo->currentFont();
-//     font.setPointSize(fontSizeCombo->currentText().toInt());
-//     font.setWeight(boldAction->isChecked() ? QFont::Bold : QFont::Normal);
-//     font.setItalic(italicAction->isChecked());
-//     font.setUnderline(underlineAction->isChecked());
-
-//     scene->setFont(font);
-// }
-
-// void m_Diagram::itemSelected(QGraphicsItem *item)
-// {
-//     DiagramTextItem *textItem =
-//         qgraphicsitem_cast<DiagramTextItem *>(item);
-
-//     QFont font = textItem->font();
-//     fontCombo->setCurrentFont(font);
-//     fontSizeCombo->setEditText(QString().setNum(font.pointSize()));
-//     boldAction->setChecked(font.weight() == QFont::Bold);
-//     italicAction->setChecked(font.italic());
-//     underlineAction->setChecked(font.underline());
-// }
-
-// void m_Diagram::about()
-// {
-//     QMessageBox::about(this, tr("About Diagram Scene"),
-//                        tr("The <b>Diagram Scene</b> example shows "
-//                           "use of the graphics framework."));
-// }
-
 void m_Diagram::createToolBox()
 {
     buttonGroup = new QButtonGroup(this);
     buttonGroup->setExclusive(false);
     connect(buttonGroup, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked),
             this, &m_Diagram::buttonGroupClicked);
-    //QGridLayout *layout = new QGridLayout;
-    //createCellWidget(tr("条件"), DiagramItem::Conditional);
-    //createCellWidget(tr("过程"), DiagramItem::Step);
-    //createCellWidget(tr("输入/输出"), DiagramItem::Io)
-    //layout->addWidget(createCellWidget(tr("条件"), DiagramItem::Conditional), 0, 0);
-    //layout->addWidget(createCellWidget(tr("过程"), DiagramItem::Step),0, 1);
-    //layout->addWidget(createCellWidget(tr("输入/输出"), DiagramItem::Io), 1, 0);
-    //! [21]
+
 
     QToolButton *textButton = new QToolButton;          //使用连接线按钮
     textButton->setCheckable(true);
     buttonGroup->addButton(textButton, InsertTextButton);
-    //textButton->setIcon(QIcon(QPixmap(":/icon/images/linepointer.png")));
-    //textButton->setIconSize(QSize(50, 50));
-    //QGridLayout *textLayout = new QGridLayout;
-    //textLayout->addWidget(textButton, 0, 0, Qt::AlignHCenter);
-    //textLayout->addWidget(new QLabel(tr("连接")), 1, 0, Qt::AlignCenter);
-    //QWidget *textWidget = new QWidget;
-    //textWidget->setLayout(textLayout);
-    //layout->addWidget(textWidget, 1, 1);
-
-    //layout->setRowStretch(3, 10);
-    //layout->setColumnStretch(2, 10);
-
-    //QWidget *itemWidget = new QWidget;
-    //itemWidget->setLayout(layout);
-
-    //backgroundButtonGroup = new QButtonGroup(this);
-    //connect(backgroundButtonGroup, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked),
-    //this, &m_Diagram::backgroundButtonGroupClicked);
-
-    // QGridLayout *backgroundLayout = new QGridLayout;
-    // backgroundLayout->addWidget(createBackgroundCellWidget(tr("Blue Grid"),
-    //                                                        ":/icon/images/background1.png"), 0, 0);
-    // backgroundLayout->addWidget(createBackgroundCellWidget(tr("White Grid"),
-    //                                                        ":/icon/images/background2.png"), 0, 1);
-    // backgroundLayout->addWidget(createBackgroundCellWidget(tr("Gray Grid"),
-    //                                                        ":/icon/images/background3.png"), 1, 0);
-    // backgroundLayout->addWidget(createBackgroundCellWidget(tr("No Grid"),
-    //                                                        ":/icon/images/background4.png"), 1, 1);
-
-    // backgroundLayout->setRowStretch(2, 10);
-    // backgroundLayout->setColumnStretch(2, 10);
-
-    //QWidget *backgroundWidget = new QWidget;
-    //backgroundWidget->setLayout(backgroundLayout);
-
-
 
     toolBox = new QToolBox;
     toolBox->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
@@ -519,19 +355,6 @@ void m_Diagram::createToolBox()
 
 void m_Diagram::createActions()
 {
-
-    // toFrontAction = new QAction(QIcon(":/icon/images/bringtofront.png"),
-    //                             tr("Bring to &Front"), this);
-    // toFrontAction->setShortcut(tr("Ctrl+F"));
-    // toFrontAction->setStatusTip(tr("Bring item to front"));
-    // connect(toFrontAction, &QAction::triggered, this, &m_Diagram::bringToFront);
-
-
-    // sendBackAction = new QAction(QIcon(":/icon/images/sendtoback.png"), tr("Send to &Back"), this);
-    // sendBackAction->setShortcut(tr("Ctrl+T"));
-    // sendBackAction->setStatusTip(tr("Send item to back"));
-    // connect(sendBackAction, &QAction::triggered, this, &m_Diagram::sendToBack);
-
     deleteAction = new QAction(QIcon(":/icon/images/delete.png"), tr("&Delete"), this);
     deleteAction->setShortcut(tr("Delete"));
     deleteAction->setStatusTip(tr("Delete item from diagram"));
@@ -541,79 +364,14 @@ void m_Diagram::createActions()
     exitAction->setShortcuts(QKeySequence::Quit);
     exitAction->setStatusTip(tr("Quit Scenediagram example"));
     connect(exitAction, &QAction::triggered, this, &QWidget::close);
-
-    // boldAction = new QAction(tr("Bold"), this);
-    // boldAction->setCheckable(true);
-    // QPixmap pixmap(":/icon/images/bold.png");
-    // boldAction->setIcon(QIcon(pixmap));
-    // boldAction->setShortcut(tr("Ctrl+B"));
-    // connect(boldAction, &QAction::triggered, this, &m_Diagram::handleFontChange);
-
-    // italicAction = new QAction(QIcon(":/icon/images/italic.png"), tr("Italic"), this);
-    // italicAction->setCheckable(true);
-    // italicAction->setShortcut(tr("Ctrl+I"));
-    // connect(italicAction, &QAction::triggered, this, &m_Diagram::handleFontChange);
-
-    // underlineAction = new QAction(QIcon(":/icon/images/underline.png"), tr("Underline"), this);
-    // underlineAction->setCheckable(true);
-    // underlineAction->setShortcut(tr("Ctrl+U"));
-    // connect(underlineAction, &QAction::triggered, this, &m_Diagram::handleFontChange);
-
-    // aboutAction = new QAction(tr("A&bout"), this);
-    // aboutAction->setShortcut(tr("F1"));
-    // connect(aboutAction, &QAction::triggered, this, &m_Diagram::about);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// void m_Diagram::createMenus()
-// {
-//     fileMenu = menuBar()->addMenu(tr("&File"));
-//     fileMenu->addAction(exitAction);
-
-//     itemMenu = menuBar()->addMenu(tr("&Item"));
-//     itemMenu->addAction(deleteAction);
-//     itemMenu->addSeparator();
-//     itemMenu->addAction(toFrontAction);
-//     itemMenu->addAction(sendBackAction);
-
-//     aboutMenu = menuBar()->addMenu(tr("&Help"));
-//     aboutMenu->addAction(aboutAction);
-// }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void m_Diagram::createToolbars()
 {
 
     editToolBar = addToolBar(tr("Edit"));
     editToolBar->addAction(deleteAction);
-    //editToolBar->addAction(toFrontAction);
-    //editToolBar->addAction(sendBackAction);
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // fontCombo = new QFontComboBox();        //设置字体的comboBox
-    // connect(fontCombo, &QFontComboBox::currentFontChanged,
-    //         this, &m_Diagram::currentFontChanged);
-
-    // fontSizeCombo = new QComboBox;          //设置字体大小的comboBox
-    // fontSizeCombo->setEditable(true);
-    // for (int i = 8; i < 30; i = i + 2)
-    //     fontSizeCombo->addItem(QString().setNum(i));
-    // QIntValidator *validator = new QIntValidator(2, 64, this);
-    // fontSizeCombo->setValidator(validator);
-    // connect(fontSizeCombo, &QComboBox::currentTextChanged,
-    //         this, &m_Diagram::fontSizeChanged);
-
-    // fontColorToolButton = new QToolButton;                  //设置流程图字体颜色按钮
-    // fontColorToolButton->setPopupMode(QToolButton::MenuButtonPopup);
-    // fontColorToolButton->setMenu(createColorMenu(SLOT(textColorChanged()), Qt::black));
-    // textAction = fontColorToolButton->menu()->defaultAction();
-    // fontColorToolButton->setIcon(createColorToolButtonIcon(":/icon/images/textpointer.png", Qt::black));
-    // fontColorToolButton->setAutoFillBackground(true);
-    // connect(fontColorToolButton, &QAbstractButton::clicked,
-    //         this, &m_Diagram::textButtonTriggered);
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     fillColorToolButton = new QToolButton;          //设置框图背景颜色按钮
     fillColorToolButton->setPopupMode(QToolButton::MenuButtonPopup);
@@ -634,15 +392,6 @@ void m_Diagram::createToolbars()
     connect(lineColorToolButton, &QAbstractButton::clicked,
             this, &m_Diagram::lineButtonTriggered);
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // textToolBar = addToolBar(tr("Font"));
-    // textToolBar->addWidget(fontCombo);
-    // textToolBar->addWidget(fontSizeCombo);
-    // textToolBar->addAction(boldAction);
-    // textToolBar->addAction(italicAction);
-    // textToolBar->addAction(underlineAction);
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     colorToolBar = addToolBar(tr("Color"));
     //colorToolBar->addWidget(fontColorToolButton);
     colorToolBar->addWidget(fillColorToolButton);
@@ -657,18 +406,6 @@ void m_Diagram::createToolbars()
     linePointerButton->setCheckable(true);
     linePointerButton->setIcon(QIcon(":/icon/images/linepointer.png"));
 
-
-    // //画Process按钮
-    // QToolButton *ProcessButton = new QToolButton;
-    // ProcessButton->setCheckable(true);
-    // ProcessButton->setIcon(QIcon(":/icon/images/process.png"));
-    // buttonGroup->addButton(ProcessButton,int(DiagramItem::Step));
-
-    // //画Conditional按钮
-    // QToolButton *ConditionalButton = new QToolButton;
-    // ConditionalButton->setCheckable(true);
-    // ConditionalButton->setIcon(QIcon(":/icon/images/conditional.png"));
-    // buttonGroup->addButton(ConditionalButton,int(DiagramItem::Conditional));
 
     pointerTypeGroup = new QButtonGroup(this);
     pointerTypeGroup->addButton(pointerButton, int(DiagramScene::MoveItem));
@@ -701,27 +438,6 @@ void m_Diagram::createToolbars()
     pointerToolbar->addWidget(sceneScaleCombo);
 
 }
-
-
-
-// QWidget *m_Diagram::createBackgroundCellWidget(const QString &text, const QString &image)
-// {
-//     QToolButton *button = new QToolButton;
-//     button->setText(text);
-//     button->setIcon(QIcon(image));
-//     button->setIconSize(QSize(50, 50));
-//     button->setCheckable(true);
-//     backgroundButtonGroup->addButton(button);
-
-//     QGridLayout *layout = new QGridLayout;
-//     layout->addWidget(button, 0, 0, Qt::AlignHCenter);
-//     layout->addWidget(new QLabel(text), 1, 0, Qt::AlignCenter);
-
-//     QWidget *widget = new QWidget;
-//     widget->setLayout(layout);
-
-//     return widget;
-// }
 
 
 

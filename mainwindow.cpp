@@ -18,14 +18,6 @@ MainWindow::MainWindow(QWidget *parent)
     ow=new OperatorWidget;
 
 
-
-    //QWidget* widget_2 = new QWidget(ui->tabWidget->tab_3);
-    // QWidget* tab_4 = new QWidget();
-    // tab_4->setObjectName(QString::fromUtf8("tab_4"));
-    // ui->tabWidget->addTab(tab_4, QString());
-    // ui->tabWidget->setTabText(3,"dd");
-
-
     myDiagram = new m_Diagram;
 
     //信号与槽
@@ -202,51 +194,6 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 }
 
 
-
-
-
-
-
-
-
-
-//保存图像
-// void MainWindow::on_pushButton_6_clicked()
-// {
-//     if(!imageManager->getImgNum())
-//         return;
-//     //获取当前QT文件的路径
-//     QString currentPath=QCoreApplication::applicationDirPath();
-
-//     QString afilePath=QFileDialog::getSaveFileName(this,
-//                                                      "保存文件",     //对话框标题
-//                                                      currentPath,      //对话框路径
-//                                                      "所有文件(*);;.jpg;;.png"   //可选的文件格式筛选
-//                                                      );
-//     if(afilePath.isNull())
-//         return;
-//     if(!afilePath.isEmpty()){
-//         int index = ui->comboBox->currentIndex();
-//         std::string savePath=afilePath.toStdString()+"/"+imageManager->getImgName(index)+".jpg";
-//         cv::imwrite(savePath,imageManager->getImage(index));
-//     }
-//     else{
-//         QString Title="异常";
-//         QString Text="路径异常！";
-//         QMessageBox::critical(this,Title,Text);
-//     }
-// }
-
-
-//按钮：显示图像
-// void MainWindow::on_pushButton_5_clicked()
-// {
-//     if(!imageManager->getImgNum())
-//         return;
-//     int index=ui->comboBox->currentIndex();
-//     std::string name=imageManager->getImgName(index);
-//     imshow(name,imageManager->getImage(index));
-// }
 
 //执行流程按钮
 void MainWindow::on_pushButton_6_clicked()

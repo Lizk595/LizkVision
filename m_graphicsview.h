@@ -37,9 +37,6 @@ signals:
     // QWidget interface
 protected:
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void mouseMoveEvent(QMouseEvent *event) override;
-    virtual void keyPressEvent(QKeyEvent *event) override;
     //int isInsideRectItem(QPoint gvPos);
     void createLine(m_GraphicsTextItem *item1, m_GraphicsTextItem *item2);
 private:

@@ -35,7 +35,7 @@ QT_END_NAMESPACE
 
 QPixmap cvMat2QPixmap(cv::Mat& mat);
 
-//! [0]
+
 class m_Diagram : public QMainWindow
 {
     Q_OBJECT
@@ -155,6 +155,6 @@ private:
     QWidget *widget;
     QHBoxLayout *layout;
 };
-//! [0]
+
 
 #endif // M_DIAGRAM_H
